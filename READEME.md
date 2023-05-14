@@ -130,8 +130,129 @@
 - MyListQueue.java
 - MyListQueueTest.java
 
-- 개발자는 대충한다.
-- 개발자를 하지않는다.
-- 개발자를 잘하기 위해 공부한다. 
+# 06. 무엇이든 담을 수 있는 제네릭(Generic) 프로그래밍
+#### 제네릭 자료형 정의
+- 클래스에서 사용하는 변수의 자료형이 여러개 일수 있고, 그 기능(메서드)은 동일한 경우 클래스의 자료형을 특정하지 않고
+    추후 해당 클래스를 사용할 때 지정 할 수 있도록 선언
+- 실제 사용되는 자료형의 변환은 컴파일러에 의해 검증되므로 안정적인 프로그래밍 방식
+- 컬렉션 프레임워크에서 많이 사용되고 있음
+- 제네릭 타입을 사용하지 않는 경우의 예
+- 재료가 Powder인 경우
+<pre>
+<code>
+public class ThreeDPrinter1{
+	private Powder material;
 
+	public void setMaterial(Powder material) {
+		this.material = material;
+	}
 
+	public Powder getMaterial() {
+		return material;
+	}
+}
+}
+</code>
+</pre>
+- 재료가 Plastic인 경우
+<pre>
+<code>
+public class ThreeDPrinter2{
+	private Plastic material;
+
+	public void setMaterial(Plastic material) {
+		this.material = material;
+	}
+
+	public Plastic getMaterial() {
+		return material;
+	}
+
+}
+</code>
+</pre>
+- 여러 타입을 대체하기 위해 Object를 사용할 수 있음
+<pre>
+<code>
+public class ThreeDPrinter{
+
+  private Object material;
+
+  public void setMaterial(Object material) {
+      this.material = material;
+  }
+
+  public Object getMaterial() {
+      return material;
+  }
+}
+</code>
+</pre>
+- Object를 사용하는 경우는 형 변환을 하여야 함 ``` ThreeDPrinter printer = new ThreeDPrinter();
+- Powder powder = new Powder(); printer.setMaterial(powder);
+- Powder p = (Powder)printer.getMaterial();
+<pre>
+<code>
+- 제네릭 클래스 정의
+
+GenericPrinter.java
+</code>
+</pre>
+
+<pre>
+<code>
+- 제네릭 클래스 정의
+
+GenericPrinter.java
+</code>
+</pre>
+public class GenericPrinter { private T material;
+<pre>
+<code>
+public void setMaterial(T material) {
+this.material = material;
+}
+
+public T getMaterial() {
+return material;
+}
+GenericPrinter : 제네릭 자료형
+
+E : element, K: key, V : value 등 여러 알파벳을 의미에 따라 사용 가능
+public String toString(){
+return material.toString();
+} } ``` - 자료형 매개변수 T(type parameter) : 이 클래스를 사용하는 시점에 실제 사용할 자료형을 지정, static 변수는 사용할 수 없음
+</code>
+</pre>
+- GenericPrinter : 제네릭 자료형
+- E : element, K: key, V : value 등 여러 알파벳을 의미에 따라 사용 가능
+
+#### 제네릭 클래스 사용하기
+Powder.java
+Plastic.java
+GenericPrinter.java
+GenericPrinterTest.java
+
+#### 다이아몬드 연산자 <>
+- 에서 <>를 다이아몬드 연산자라 함
+- ArrayList list = new ArrayList<>(); //다이아몬든 연산자 내부에서 자료형은 생략가능 함
+- 제네릭에서 자료형 추론(자바 10부터)
+- ArrayList list = new ArrayList() => var list = new ArrayList();
+
+# 07. 사용하기
+###   상위 클래스의 필요성
+- T 자료형의 범위를 제한 할 수 있음
+- 상위 클래스에서 선언하거나 정의하는 메서드를 활용할 수 있음
+- 상속을 받지 않는 경우 T는 Object로 변환되어 Object 클래스가 기본으로 제공하는 메서드만 사용가능
+
+### T extends 를 사용한 프로그래밍
+- GenericPrinter 에 material 변수의 자료형을 상속받아 구현
+- T에 무작위 클래스가 들어갈 수 없게 Material 클래스를 상속받은 클래스로 한정
+
+  ![img_13.png](img_13.png)
+
+- Material.java
+- Powder.java
+- Plastic.java
+- GenericPrinter.java
+- GenericPrinterTest.java
