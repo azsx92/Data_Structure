@@ -42,7 +42,9 @@
 - inorder traversal 탐색을 하게 되면 자료가 정렬되어 출력됨 
 - <span style='background-color:#fff333'> 예) [23, 10, 28, 15, 7, 22, 56] 순으로 자료를 넣을때 BST</span>
 - 나중에 tresset이나 treemap 할떄 compaable인터페이스 구현해서 비교하게끔 구현할 거.
-     ![img_7.png](img_7.png)
+     
+![img_7.png](img_7.png)
+
 
 - 정점(vertex) : 여러 특성을 가지는 객체, 노드(node)
 - 간선(edge) : 이 객체들을 연결 관계를 나타냄. 링크(link)
