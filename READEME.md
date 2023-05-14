@@ -1,3 +1,7 @@
+# [자바] java 자료구조
+### 15 May 2023 in Study on Java
+<hr>
+
 # 여러가지 자료구조에 대해 알아보자
 ## 자료구조란 무엇인가? (Data Structure)
 
@@ -75,8 +79,9 @@
 
 - 해시는 키에대한 밸류가 있다.
 - 키는 유해서 키는 중복될 수 없다. 키만 알면 밸류를 꺼낼 수 없다. 해시는 들어가는 순서와 상관이 없다. 배열과 비슷하게 생겨서 많이 오해. 해시펑션에 의해 정해져서 순서랑은 무관하다.
+<hr>
 
-#  배열(Array) 구현하기
+#  02,배열(Array) 구현하기
 ## Array의 특징
 - 동일한 데이터 타입을 순서에 따라 관리하는 자료 구조
 - 정해진 크기가 있음
@@ -87,6 +92,7 @@
 - MyArray.java
 - MyArrayTest.java
 - MyObjectArray.java
+<hr>
 
 # 02. 연결 리스트 (LinkedList) 구현하기
 ## LinkedList 특징
@@ -104,6 +110,7 @@
 - MyListNode.java
 - MyLinkedList.java
 - MyLinkedListTest.java
+<hr>
 
 # 03. 스택(Stack) 구현하기
 ##    Stack의 특징
@@ -117,6 +124,7 @@
 
 - MyArrayStack.java
 - MyArrayStackTest.java
+<hr>
 
 # 04. 큐(Queue) 구현하기
 ##   Queue의 특징
@@ -129,6 +137,7 @@
 #### 연결 리스트를 활용하여 Queue 구헌하기
 - MyListQueue.java
 - MyListQueueTest.java
+<hr>
 
 # 06. 무엇이든 담을 수 있는 제네릭(Generic) 프로그래밍
 #### 제네릭 자료형 정의
@@ -238,6 +247,7 @@ GenericPrinterTest.java
 - ArrayList list = new ArrayList<>(); //다이아몬든 연산자 내부에서 자료형은 생략가능 함
 - 제네릭에서 자료형 추론(자바 10부터)
 - ArrayList list = new ArrayList() => var list = new ArrayList();
+<hr>
 
 # 07. 사용하기
 ###   상위 클래스의 필요성
@@ -257,6 +267,8 @@ GenericPrinterTest.java
 - GenericPrinter.java
 - GenericPrinterTest.java
 
+<hr>
+
 # 08. 제네릭 메서드 활용하기
 ###    제네릭 메서드란?
 - 자료형 매개변수를 메서드의 매개변수나 반환 값으로 가지는 메서드는
@@ -268,3 +280,46 @@ GenericPrinterTest.java
 - 두 점은 정수인 경우도 있고, 실수인 경우도 있으므로 제네릭 타입을 사용하여 구현한다.
 - Point.java
 - GenericMethod.java
+
+# 09. 자바에서 제공되는 자료구조 구현 클래스들 - 컬레션 프레임워크
+### 컬렉션 프레임워크
+- 프로그램 구현에 필요한 자료구조(Data Structure)를 구현해 놓은 JDK 라이브러리
+- java.util 패키지에 구현되어 있음
+- 개발에 소요되는 시간을 절약하면서 최적화 된 알고리즘을 사용할 수 있음
+- 여러 구현 클래스와 인터페이스의 활용에 대한 이해가 필요함
+  ![img_14.png](img_14.png)
+
+<hr>
+
+### Collection 인터페이스
+- 하나의 객체를 관리하기 위한 메서드가 선언된 인터페이스의
+- 하위에 List와 Set 인터페이스가 있음
+### List 인터페이스
+- 객체를 순서에 따라 저장하고 관리하는데 필요한 메서드가 선언된 인터페이스
+- 자료구조 리스트 (배열, 연결리스트)의 구현을 위한 인터페이스
+- 중복을 허용함
+- ArrayList, Vector, LinkedList, Stack, Queue 등…
+
+### Set 인터페이스
+- 순서와 관계없이 중복을 허용하지 않고 유일한 값을 관리하는데 필요한 메서드가 선언됨
+- 아이디, 주민번호, 사번등을 관리하는데 유용
+- 저장된 순서와 출력되는 순서는 다를 수 있음
+- HashSet, TreeSet등…
+
+### Map 인터페이스
+- 쌍(pair)로 이루어진 객체를 관리하는데 사용하는 메서드들이 선언된 인터페이스
+- 객체는 key-value의 쌍으로 이루어짐
+- key는 중복을 허용하지 않음
+- HashTable, HashMap, Properties, TreeMap 등이 Map 인터페이스를 구현 함
+<hr>
+
+# 10. 순차적으로 자료를 관리하는 List 인터페이스를 구현한 클래스와 그 활용
+### 멤버십 관리하기
+- Member 클래스를 만들고, 아이디와 이름을 멤버 변수로 선언
+- Member 클래스로 생성된 인스턴스들을 관리하는 클래스를 컬렉션 프레임워크 클래스들을 활용하여 구현한다.
+### ArrayList 활용하기
+- 멤버를 순차적으로 관리함
+- Member.java
+- MemberArrayList.java
+- MemberArrayListTest.java
+<hr>
