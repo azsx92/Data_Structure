@@ -31,4 +31,21 @@ public class Member {
                 "이며 , 회원님 성함은='" + memberName + "입니다." +'\'' +
                 '}' ;
     }
+
+    @Override
+    public int hashCode() {
+        return memberId;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if( obj instanceof Member){
+            Member member = (Member)obj;
+            if( this.memberId == member.memberId )
+                return true;
+            else
+                return false;
+        }
+        return false;
+    }
 }

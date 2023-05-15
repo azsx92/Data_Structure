@@ -323,3 +323,120 @@ GenericPrinterTest.java
 - MemberArrayList.java
 - MemberArrayListTest.java
 <hr>
+
+# 11. Collection 요소를 순회하는 Iterator
+### 요소의 순회란?
+- 컬렉션 프레임워크에 저장된 요소들을 하나씩 차례로 참조하는것
+- 순서가 있는 List인터페이스의 경우는 Iterator를 사용 하지 않고 get(i) 메서드를 활용할 수 있음
+- Set 인터페이스의 경우 get(i) 메서드가 제공되지 않으므로 Iterator를 활용하여 객체를 순회함
+### Iterator 사용하기
+- boolean hasNext() : 이후에 요소가 더 있는지를 체크하는 메서드, 요소가 있다면 true를 반환
+- E next() : 다음에 있는 요소를 반환
+- MemberArrayList.java 의 removeMember() 메서드를 Iterator를 활용하여 구현
+- removeMember.java 참조
+<hr>
+
+# 12. 중복되지 않게 자료를 관리하는 Set 인터페이스를 구현한 클래스와 그 활용
+### HashSet 클래스
+- Set 인터페이스를 구현한 클래스와
+- 멤버의 중복 여부를 체크하기 위해 인스턴스의 동일성을 확인해야 함
+- 동일성 구현을 위해 필요에 따라 equals()와 hashCode()메서드를 재정의함
+- HashSetTest.java
+- MemberHashSet.java
+- MemberHashSetTest.java
+- 아이디가 동일한 경우 같은 멤버이므로 중복되지 않도록 Member 클래스의 equals()와 hashCode()메서드를 재정의함
+- Member.java
+<pre>
+<code>
+
+  @Override
+  public int hashCode() {
+    return memberId;
+  }
+
+ @Override
+	public boolean equals(Object obj) {
+		if( obj instanceof Member){
+			Member member = (Member)obj;
+			if( this.memberId == member.memberId )
+				return true;
+			else
+				return false;
+		}
+		return false;
+	}
+</code>
+</pre>
+<hr>
+
+# 13. 정렬을 위해 Comparable과 Comparator 인터페이스 구현하기
+### TreeSet 클래스 활용하기
+- 객체의 정렬에 사용하는 클래스
+- Set 인터페이스를 구현하여 중복을 허용하지 않고, 오름차순이나 내림차순으로 객체를 정렬할 수 있음
+- 내부적으로 이진검색트리(binary search tree)로 구현됨
+- 이진검색트리에 저장하기 위해 각 객체를 비교해야 함
+- 비교 대상이 되는 객체에 Comparable이나 Comparator 인터페이스를 구현 해야 TreeSet에 추가 될 수 있음
+- String, Integer등 JDK의 많은 클래스들이 이미 Comparable을 구현했음
+
+- TreeSetTest.java
+- String 클래스는 이미 Comprable 인터페이스가 구현되어 있으므로 오름차순으로 정렬되어 출력됨
+- MemberTreeSet.java
+- MemberTreeSetTest.java
+- Member클래스가 아이디 오름차순으로 정렬되게 하기 위해 Comparable 인터페이스를 구현
+- Member.java
+<pre>
+<code>
+
+public class Member implements Comparable<Member> {
+
+	@Override
+	public int compareTo(Member member) {
+
+		//return (this.memberId - member.memberId);   //오름차순
+		return (this.memberId - member.memberId) *  (-1);   //내림 차순
+	}
+}
+</code>
+</pre>
+- Comparator의 활용 : 이미 Comparable이 구현된 경우 Comparator로 비교하는 방식을 다시 구현할 수 있음
+<pre>
+<code>
+class MyCompare implements Comparator<String>{
+
+	@Override
+	public int compare(String s1, String s2) {
+		return (s1.compareTo(s2)) *-1 ;
+	}
+}
+
+public class ComparatorTest {
+
+	public static void main(String[] args) {
+
+		Set<String> set = new TreeSet<String>(new MyCompare());
+		set.add("aaa");
+		set.add("ccc");
+		set.add("bbb");
+
+		System.out.println(set);
+	}
+}
+
+</code>
+</pre>
+<hr>
+
+# 14. 쌍(pair)으로 자료를 관리하는 Map 인터페이스를 구현한 클래스와 그 활용
+### HashMap 클래스 활용하기
+- Map 인터페이스를 구현한 클래스와
+- 가장 많이 사용되는 Map 인터페이스 기반 클래스
+- key - value를 쌍으로 관리하는 메서드를 구현함
+- 검색을 위한 자료구조
+- key를 이용하여 값을 저정하고 key를 이용하여 값을 꺼내오는 방식 - hash 알고리즘으로 구현 됨
+- key가 되는 객체는 중복될 수 없고 객체의 유일성을 비교를 위한 equals()와 hashCode() 메서드를 구현해야 함
+- // Member.java 는 기존과 동일
+- MemberHashMap.java
+- MemberHashMapTest.java
+### TreeMap 클래스
+- Map 인터페이스를 구현한 클래스이고 key에 대한 정렬을 구현할 수 있음
+- key가 되는 클래스에 Comparable이나 Comparator인터페이스를 구현함으로써 key-value 쌍의 자료를 key값 기준으로 정렬하여 관리 할 수 있음

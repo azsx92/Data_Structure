@@ -22,4 +22,6 @@ public class GenericMethod {
         double rect = GenericMethod.<Integer, Double> makeRectangle(p1 , p2);
         System.out.println("두 점으로 만들어진 사각형의 넓이는 " + rect + "입니다.");
     }
+
+
 }
